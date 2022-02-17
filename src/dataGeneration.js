@@ -34,6 +34,10 @@ const Device4 = {
     text: 'Device 4',
 }
 
+function randomInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 const dataGeneration = (data) => {
     var lis = [
         
@@ -44,8 +48,8 @@ const dataGeneration = (data) => {
 
         var deviceID = {}
         var roomID = {}
-        var x = 1
-        var y = 2
+        var x = randomInteger(2, 10)
+        var y = randomInteger(2, 10)
 
         switch (item.id) {
             case 'device1':
