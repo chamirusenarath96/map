@@ -9,6 +9,10 @@ export const buildingData = {
           [-40, 30],
           [-37, 30],
           [-37, -87],
+          [13, -87],
+          [13, -77],
+          [16, -77],
+          [16, -87],
           [157, -87],
           [157, -53],
           [95, -53],
@@ -50,7 +54,6 @@ export const roomsData = {
       type: 'Feature',
       properties: {
         name: 'Room 1',
-        count: 1,
       },
       geometry: {
         type: 'Polygon',
@@ -59,9 +62,7 @@ export const roomsData = {
           [-30, 30],
           [-30, 27],
           [13, 27],
-          [13, -53],
-          [157, -53],
-          [157, -87],
+          [13, -87],
           [-37, -87],
         ]],
       },
@@ -69,7 +70,6 @@ export const roomsData = {
       type: 'Feature',
       properties: {
         name: 'Room 2',
-        count: 1,
       },
       geometry: {
         type: 'Polygon',
@@ -84,7 +84,6 @@ export const roomsData = {
       type: 'Feature',
       properties: {
         name: 'Room 3',
-        count: 1,
       },
       geometry: {
         type: 'Polygon',
@@ -95,38 +94,72 @@ export const roomsData = {
           [88, -50],
         ]],
       },
-    }
+    },
+    {
+      type: 'Feature',
+      properties: {
+        name: 'Room 4',
+      },
+      geometry: {
+        type: 'Polygon',
+        coordinates: [[
+          [16, -53],
+          [157, -53],
+          [157, -87],
+          [16, -87],
+          
+        ]],
+      },
+    },
   ],
 };
 
-export const markers = {
-  type: 'FeatureCollection',
-  features: [
+const anchorMarkers = [
+  {
+    coordinates: [-8, 27],
+    text: 'Anchor 1',
+    value: 1,
+  },
+  {
+    coordinates: [50.5, 27],
+    text: 'Anchor 2',
+    value: 1,
+  },
+  {
+    coordinates: [122.5, 27],
+    text: 'Anchor 3',
+    value: 1,
+  },
+  {
+    coordinates: [157, -70],
+    text: 'Anchor 4',
+    value: 1,
+  },
+  {
+    coordinates: [-8, -87],
+    text: 'Anchor 5',
+    value: 1,
+  },
+]
+
+export const anchorGeneration = () => {
+  return (
     {
-      coordinates: [-28, -40],
-      text: 'Device 1',
-      value: 1,
-    },
-    {
-      coordinates: [45, -20],
-      text: 'Device 2',
-      value: 1,
-    },
-    {
-      coordinates: [120, -30],
-      text: 'Device 3',
-      value: 1,
-    },    
-  ].map((data) => ({
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: data.coordinates,
-    },
-    properties: {
-      text: data.text,
-      value: data.value,
-      tooltip: `<b>${data.text}</b>\n${data.value}K`,
-    },
-  })),
-};
+      type: 'FeatureCollection',
+      features: anchorMarkers
+        .map((data) => ({
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: data.coordinates,
+          },
+          properties: {
+            text: data.text,
+            value: data.value,
+            //tooltip: `<b>${data.text}</b>\n${data.value}K`,
+            url: data.url,
+          },
+        })),
+    }
+  )
+}

@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 import VectorMap, { Layer, Tooltip, Label } from 'devextreme-react/vector-map'
 
-import { roomsData, buildingData } from './data.js'
+import { roomsData, buildingData, anchorGeneration } from './data.js'
 // import { markers } from './dataGeneration.js';
 
 import db from './Firebase.js'
@@ -52,13 +52,12 @@ export default function App() {
     []
   )
 
-  
   useEffect(
     () =>
       setMarkers([dataGeneration(devices)]),
     [devices]
   )
-  console.log(markers)
+
   return (
     <div className='App'>
       <VectorMap
@@ -81,10 +80,24 @@ export default function App() {
           <Label enabled={true} dataField='name'></Label>
         </Layer>
         <Layer
+          dataSource={anchorGeneration()}
+          name='bubbles'
+          elementType='bubble'
+          dataField='value'
+          minSize={20}
+          maxSize={40}
+          sizeGroups={sizeGroups}
+          opacity='0.8'
+          color={'#812904'}
+        >
+          <Label enabled={true} dataField='text'></Label>
+        </Layer>
+        <Layer
           dataSource={markers}
           name='bubbles'
           elementType='bubble'
           dataField='value'
+
           minSize={20}
           maxSize={40}
           sizeGroups={sizeGroups}

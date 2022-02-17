@@ -15,7 +15,7 @@ const room3 = {
 
 const room4 = {
     coordinateX: 86,
-    coordinateY: -72
+    coordinateY: -80
 }
 
 const Device1 = {
@@ -34,41 +34,11 @@ const Device4 = {
     text: 'Device 4',
 }
 
-
-// export const markers = {
-//     type: 'FeatureCollection',
-//     features: [
-//         {
-//             coordinates: [-28, -40],
-//             text: 'Device 1',
-//             value: 1,
-//         },
-//         {
-//             coordinates: [-28, 40],
-//             text: 'Device 2',
-//             value: 1,
-//         },
-//         {
-//             coordinates: [38, 20],
-//             text: 'Device 3',
-//             value: 1,
-//         },
-//     ].map((data) => ({
-//         type: 'Feature',
-//         geometry: {
-//             type: 'Point',
-//             coordinates: data.coordinates,
-//         },
-//         properties: {
-//             text: data.text,
-//             value: data.value,
-//             tooltip: `<b>${data.text}</b>\n${data.value}K`,
-//         },
-//     })),
-// }
-
 const dataGeneration = (data) => {
-    var lis = []
+    var lis = [
+        
+
+    ]
 
     data.map((item) => {
 
@@ -111,11 +81,6 @@ const dataGeneration = (data) => {
                 roomID = roomID
         }
 
-        console.log(item.id)
-        console.log(item.last)
-        console.log(deviceID)
-        console.log(roomID)
-
         lis.push({
             coordinates: [ parseInt(roomID.coordinateX) + x, parseInt(roomID.coordinateY) + y],
             text: deviceID.text,
@@ -136,7 +101,9 @@ const dataGeneration = (data) => {
                     properties: {
                         text: data.text,
                         value: data.value,
-                        tooltip: `<b>${data.text}</b>\n${data.value}K`,
+                        //tooltip: `<b>${data.text}</b>\n${data.value}K`,
+                        url: data.url,
+                        color: '#812904',
                     },
                 })),
         }
